@@ -1,54 +1,56 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Post,
   Put,
   UseInterceptors,
 } from '@nestjs/common';
-import { ClubDTO } from 'src/club/club.dto';
 import { BusinessErrorsInterceptor } from '../shared/interceptors/interceptor';
 import { ClubMemberService } from './club-member.service';
 import { ClubMemberDTO } from '../club-member/club-member.dto';
 
-@Controller('club-member')
+@Controller('clubs')
 @UseInterceptors(BusinessErrorsInterceptor)
 export class ClubMemberController {
-  constructor(private readonly cityRestaurantService: ClubMemberService) {}
+  constructor(private readonly clubMemberService: ClubMemberService) {}
 
-  @Post('clubs/:clubId/members/:memberId')
+  @Post(':clubId/members/:memberId')
   async addMemberToClub(
-    @Param('clubId') cityId: string,
+    @Param('clubId') clubId: string,
     @Param('memberId') memberId: string,
   ) {
-    return await this.cityRestaurantService.associateClubMember(
-      memberId,
-      memberId,
-    );
+    return await this.clubMemberService.associateClubMember(clubId, memberId);
   }
 
-  @Put('clubs/:clubId/members')
+  @Put(':clubId/members')
   async updateMembersFromClub(
     @Param('clubId') clubId: string,
     @Body() members: ClubMemberDTO[],
   ) {
-    return await this.cityRestaurantService.updateMemberFromClub(
-      clubId,
-      members,
-    );
+    return await this.clubMemberService.updateMemberFromClub(clubId, members);
   }
 
-  @Get('clubs/:clubId/members')
-  async findMembersFromClub(@Param('clubId') cityId: string) {
-    return await this.cityRestaurantService.getClubMembers(cityId);
+  @Delete(':clubId/members/:memberId')
+  async deleteMemberFromClub(
+    @Param('clubId') clubId: string,
+    @Param('memberId') memberId: string,
+  ) {
+    return await this.clubMemberService.deleteMemberFromClub(clubId, memberId);
   }
 
-  @Get('clubs/:clubId/members/:memberId')
+  @Get(':clubId/members')
+  async findMembersFromClub(@Param('clubId') clubId: string) {
+    return await this.clubMemberService.getClubMembers(clubId);
+  }
+
+  @Get(':clubId/members/:memberId')
   async findMemberFromClub(
     @Param('clubId') clubId: string,
     @Param('memberId') memberId: string,
   ) {
-    return await this.cityRestaurantService.getMemberClub(clubId, memberId);
+    return await this.clubMemberService.getMemberClub(clubId, memberId);
   }
 }

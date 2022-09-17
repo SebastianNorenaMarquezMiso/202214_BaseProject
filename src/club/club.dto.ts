@@ -1,7 +1,6 @@
 import { IsNotEmpty, IsString, IsDate } from 'class-validator';
 
 export class ClubDTO {
-  @IsString()
   readonly id: string;
   @IsString()
   @IsNotEmpty()
@@ -12,7 +11,6 @@ export class ClubDTO {
   @IsString()
   @IsNotEmpty()
   readonly photo: string;
-  @IsDate()
   @IsNotEmpty()
   readonly foundationDate: Date;
 }

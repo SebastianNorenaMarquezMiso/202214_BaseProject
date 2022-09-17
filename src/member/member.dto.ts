@@ -1,7 +1,6 @@
 import { IsNotEmpty, IsString, IsDate } from 'class-validator';
 
 export class MemberDTO {
-  @IsString()
   readonly id: string;
   @IsString()
   @IsNotEmpty()
@@ -9,7 +8,6 @@ export class MemberDTO {
   @IsString()
   @IsNotEmpty()
   readonly email: string;
-  @IsDate()
   @IsNotEmpty()
   readonly dateOfBirth: Date;
 }

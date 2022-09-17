@@ -50,6 +50,12 @@ export class ClubService {
   }
 
   async update(id: string, clubDTO: ClubDTO): Promise<ClubDTO> {
+    if (clubDTO.description.length > 100) {
+      throw new BusinessLogicException(
+        'The description cannot exceed 100 characters',
+        BusinessError.BAD_REQUEST,
+      );
+    }
     const club = await this.clubRepository.findOne({
       where: { id },
     });

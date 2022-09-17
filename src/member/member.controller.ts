@@ -15,7 +15,7 @@ import { MemberDTO } from './member.dto';
 import { Member } from './member.entity';
 import { MemberService } from './member.service';
 
-@Controller('member')
+@Controller('members')
 @UseInterceptors(BusinessErrorsInterceptor)
 export class MemberController {
   constructor(private readonly memberService: MemberService) {}

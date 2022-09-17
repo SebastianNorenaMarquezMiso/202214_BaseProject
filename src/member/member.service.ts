@@ -50,6 +50,12 @@ export class MemberService {
   }
 
   async update(id: string, memberDTO: MemberDTO): Promise<MemberDTO> {
+    if (!memberDTO.email.includes('@')) {
+      throw new BusinessLogicException(
+        'The email must contain the "@" character',
+        BusinessError.BAD_REQUEST,
+      );
+    }
     const member = await this.memberRepository.findOne({
       where: { id },
     });
