@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 
-import { Club } from 'src/club/club.entity';
+import { Club } from '../club/club.entity';
 @Entity()
 export class Member {
   @PrimaryGeneratedColumn('uuid')
