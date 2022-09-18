@@ -36,7 +36,7 @@ export class ClubMemberService {
 
     if (!club)
       throw new BusinessLogicException(
-        'The category with the given id was not found',
+        'The club with the given id was not found',
         BusinessError.NOT_FOUND,
       );
 
@@ -93,7 +93,7 @@ export class ClubMemberService {
 
     if (!club)
       throw new BusinessLogicException(
-        'The category with the given id was not found',
+        'The club with the given id was not found',
         BusinessError.NOT_FOUND,
       );
 
@@ -118,7 +118,7 @@ export class ClubMemberService {
 
     if (!club)
       throw new BusinessLogicException(
-        'The category with the given id was not found',
+        'The member with the given id was not found',
         BusinessError.NOT_FOUND,
       );
     club.members = club.members.filter((e) => e.id !== membertId);
@@ -133,7 +133,7 @@ export class ClubMemberService {
 
     if (!club)
       throw new BusinessLogicException(
-        'The category with the given id was not found',
+        'The member with the given id was not found',
         BusinessError.NOT_FOUND,
       );
 
